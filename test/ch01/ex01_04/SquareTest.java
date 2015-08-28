@@ -1,4 +1,4 @@
-package chapter01.p1_1;
+package ch01.ex01_04;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,9 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HelloWorldTest {
+import ch01.ex01_04.Square;
+
+public class SquareTest {
 
 	private BufferedReader reader;
 
@@ -25,8 +27,11 @@ public class HelloWorldTest {
 
 	@Test
 	public void testMain() throws IOException {
-		HelloWorld.main(null);
-		assertEquals("Hello, world", reader.readLine());
+		Square.main(null);
+		assertEquals(reader.readLine(), "Square");
+		for (int i = 1; i <= 10; i++) {
+			assertEquals(i * i, Integer.parseInt(reader.readLine()));
+		}
 	}
 
 }

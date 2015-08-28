@@ -1,4 +1,4 @@
-package chapter01.p1_5;
+package ch01.ex01_05;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +11,8 @@ import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ch01.ex01_05.HelloWorld;
 
 public class HelloWorldTest {
 

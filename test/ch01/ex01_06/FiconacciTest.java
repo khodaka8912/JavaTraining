@@ -1,4 +1,4 @@
-package chapter01.p1_6;
+package ch01.ex01_06;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import chapter01.p1_3.Fibonacci;
+import ch01.ex01_03.Fibonacci;
 
 public class FiconacciTest {
 

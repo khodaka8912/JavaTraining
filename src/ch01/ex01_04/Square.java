@@ -1,4 +1,4 @@
-package chapter01.p1_4;
+package ch01.ex01_04;
 
 public class Square {
 	/** 1から10までの平方数を表示する */

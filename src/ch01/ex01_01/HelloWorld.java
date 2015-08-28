@@ -1,4 +1,4 @@
-package chapter01.p1_1;
+package ch01.ex01_01;
 
 public class HelloWorld {
 	public static void main(String[] args) {

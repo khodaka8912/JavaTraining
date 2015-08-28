@@ -1,4 +1,4 @@
-package chapter01.p1_7;
+package ch01.ex01_07;
 
 public class ImprovedFibonacci {
 	
