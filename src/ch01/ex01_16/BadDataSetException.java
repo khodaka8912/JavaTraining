@@ -6,7 +6,7 @@ public class BadDataSetException extends Exception {
 
 	private final String setName;
 	
-	BadDataSetException(String setName, IOException cause) {
+	public BadDataSetException(String setName, IOException cause) {
 		super(cause);
 		this.setName = setName;
 	}
