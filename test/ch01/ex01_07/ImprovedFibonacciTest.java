@@ -1,6 +1,7 @@
-package ch01.ex01_06;
+package ch01.ex01_07;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,9 +13,7 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import ch01.ex01_03.Fibonacci;
-
-public class FiconacciTest {
+public class ImprovedFibonacciTest {
 
 	private BufferedReader reader;
 
@@ -27,18 +26,15 @@ public class FiconacciTest {
 
 	@Test
 	public void testMain() throws IOException {
-		Fibonacci.main(null);
-		assertEquals(reader.readLine(), "Fibonacci");
-		int lo = Integer.parseInt(reader.readLine());
-		assertEquals(1, lo);
-		int hi = Integer.parseInt(reader.readLine());
-		assertEquals(1, hi);
-		int next;
-		while (lo + hi > 50) {
-			next = Integer.parseInt(reader.readLine());
-			assertEquals(lo + hi, next);
-			lo = hi;
-			hi = next;
+		ImprovedFibonacci.main(null);
+		int lo = 1;
+		int hi = 1;
+		assertThat(reader.readLine(), is("1: " + lo));
+		for (int i = 2; i <= ImprovedFibonacci.MAX_INDEX; i++) {
+			String mark = hi % 2 == 0 ? " *" : "";
+			assertThat(reader.readLine(), is(i + ": " + hi + mark));
+			hi = hi + lo;
+			lo = hi - lo;
 		}
 	}
 

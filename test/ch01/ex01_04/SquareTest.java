@@ -1,6 +1,7 @@
 package ch01.ex01_04;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +12,6 @@ import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import ch01.ex01_04.Square;
 
 public class SquareTest {
 
@@ -28,7 +27,7 @@ public class SquareTest {
 	@Test
 	public void testMain() throws IOException {
 		Square.main(null);
-		assertEquals(reader.readLine(), "Square");
+		assertThat(reader.readLine(), is("Square"));
 		for (int i = 1; i <= 10; i++) {
 			assertEquals(i * i, Integer.parseInt(reader.readLine()));
 		}

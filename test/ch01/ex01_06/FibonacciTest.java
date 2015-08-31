@@ -1,7 +1,7 @@
-package ch01.ex01_01;
+package ch01.ex01_06;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,9 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HelloWorldTest {
+import ch01.ex01_03.Fibonacci;
+
+public class FibonacciTest {
 
 	private BufferedReader reader;
 
@@ -26,8 +28,19 @@ public class HelloWorldTest {
 
 	@Test
 	public void testMain() throws IOException {
-		HelloWorld.main(null);
-		assertThat(reader.readLine(), is("Hello, world"));
+		Fibonacci.main(null);
+		assertThat(reader.readLine(), is("Fibonacci"));
+		int lo = Integer.parseInt(reader.readLine());
+		assertThat(lo, is(1));
+		int hi = Integer.parseInt(reader.readLine());
+		assertThat(hi, is(1));
+		int next;
+		while (lo + hi > 50) {
+			next = Integer.parseInt(reader.readLine());
+			assertThat(next, is(lo + hi));
+			lo = hi;
+			hi = next;
+		}
 	}
 
 }

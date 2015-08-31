@@ -1,6 +1,7 @@
 package ch01.ex01_05;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +12,6 @@ import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import ch01.ex01_05.HelloWorld;
 
 public class HelloWorldTest {
 
@@ -28,7 +27,7 @@ public class HelloWorldTest {
 	@Test
 	public void testMain() throws IOException {
 		HelloWorld.main(null);
-		assertEquals("Hello, world", reader.readLine());
+		assertThat(reader.readLine(), is("Hello, world"));
 	}
 
 }
