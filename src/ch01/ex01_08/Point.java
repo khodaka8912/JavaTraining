@@ -13,9 +13,14 @@ public class Point {
 	public double distance(Point that) {
 		double xdiff = x - that.x;
 		double ydiff = y - that.y;
-		return Math.sqrt(xdiff * xdiff + ydiff + ydiff);
+		return Math.sqrt(xdiff * xdiff + ydiff * ydiff);
 	}
 	
+	/**
+	 * move to target coordinate
+	 * @param x target x-coordinate
+	 * @param y target y-coordinate
+	 */
 	public void move(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -23,7 +28,7 @@ public class Point {
 	
 	/**
 	 * move to target point
-	 * @param target targt point to which this point move
+	 * @param target target point to move
 	 */
 	public void move(Point target) {
 		x = target.x;

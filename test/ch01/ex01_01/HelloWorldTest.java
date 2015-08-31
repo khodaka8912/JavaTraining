@@ -1,6 +1,6 @@
 package ch01.ex01_01;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 import java.io.BufferedReader;
@@ -24,6 +24,11 @@ public class HelloWorldTest {
 		System.setOut(new PrintStream(new PipedOutputStream(pin)));
 	}
 
+	@Test
+	public void testHelloWorld() {
+		assertThat(new HelloWorld(), is(notNullValue()));
+	}
+	
 	@Test
 	public void testMain() throws IOException {
 		HelloWorld.main(null);

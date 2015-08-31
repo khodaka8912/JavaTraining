@@ -23,13 +23,18 @@ public class SquareTest {
 		reader = new BufferedReader(new InputStreamReader(pin));
 		System.setOut(new PrintStream(new PipedOutputStream(pin)));
 	}
+	
+	@Test
+	public void testSquare() {
+		assertThat(new Square(), is(notNullValue()));
+	}
 
 	@Test
 	public void testMain() throws IOException {
 		Square.main(null);
 		assertThat(reader.readLine(), is("Square"));
 		for (int i = 1; i <= 10; i++) {
-			assertEquals(i * i, Integer.parseInt(reader.readLine()));
+			assertThat(Integer.parseInt(reader.readLine()), is(i * i));
 		}
 	}
 
