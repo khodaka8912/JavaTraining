@@ -1,12 +1,13 @@
-package ch02.ex02_01;
+package ch02.ex02_04;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import com.sun.org.apache.xpath.internal.operations.And;
 
 public class VehicleTest {
 	
@@ -43,5 +44,31 @@ public class VehicleTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testSetDirection4() {
 		vehicle.setDirection(Math.PI * 2);
+	}
+	
+	@Test
+	public void testSetSpeed1() {
+		vehicle.setSpeed(1);
+		assertThat(vehicle.getSpeed(), is(1));
+		vehicle.setSpeed(0);
+		assertThat(vehicle.getSpeed(), is(0));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetSpeed2() {
+		vehicle.setSpeed(-1);
+	}
+	
+	@Test
+	public void testID() {
+		Vehicle v1 = new Vehicle();
+		Vehicle v2 = new Vehicle();
+		assertThat(v1.getID(), is(not(v2.getID())));
+	}
+	
+	@Test
+	public void testFinalID() throws NoSuchFieldException, SecurityException, ClassNotFoundException {
+		Field id = Class.forName("ch02.ex02_04.Vehicle").getDeclaredField("idNum");
+		assertThat(Modifier.isFinal(id.getModifiers()), is(true));
 	}
 }

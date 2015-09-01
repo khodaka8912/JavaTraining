@@ -6,15 +6,16 @@ public class Fibonacci {
 
 	/** 値が50未のフィボナッチ数列を表示する */
 	public static void main(String[] args) {
+		System.out.println("Fibonacci");
 		int lo = 1;
 		int hi = 1;
 		int[] fiboArray = new int[MAX_LENGTH];
 		fiboArray[0] = lo;
-		for(int i = 1; i< MAX_LENGTH; i++) {
+		for (int i = 1; i < MAX_LENGTH; i++) {
 			fiboArray[i] = hi;
 			hi = lo + hi; // 新しいhi
 			lo = hi - lo; // 新しいloは、(合計 - 古いlo) すなわち、古いhi
-		}		
+		}
 		for (int n : fiboArray) {
 			System.out.println(n);
 		}

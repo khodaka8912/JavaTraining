@@ -25,6 +25,11 @@ public class ImprovedFibonacciTest {
 	}
 
 	@Test
+	public void testImprovedFibonacci() {
+		assertThat(new ImprovedFibonacci(), is(notNullValue()));
+	}
+
+	@Test
 	public void testMain() throws IOException {
 		ImprovedFibonacci.main(null);
 		int lo = 1;

@@ -23,6 +23,11 @@ public class HelloWorldTest {
 		reader = new BufferedReader(new InputStreamReader(pin));
 		System.setOut(new PrintStream(new PipedOutputStream(pin)));
 	}
+	
+	@Test
+	public void testHelloWorld() {
+		assertThat(new HelloWorld(), is(notNullValue()));
+	}
 
 	@Test
 	public void testMain() throws IOException {

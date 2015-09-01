@@ -1,16 +1,22 @@
 package ch01.ex01_14;
 
-import java.io.OutputStream;
-
 public class WalkmanDuo extends Walkman {
-	
-	private OutputStream secondEarphone;
-	
-	public OutputStream getSecondEarphone() {
+
+	private Object secondEarphone;
+
+	@Override
+	public void play() {
+		super.play();
+		if (secondEarphone != null) {
+			// play music with second earphone
+		}
+	}
+
+	public Object getSecondEarphone() {
 		return secondEarphone;
 	}
-	
-	public void setSecondEarphone(OutputStream earphone) {
+
+	public void setSecondEarphone(Object earphone) {
 		secondEarphone = earphone;
 	}
 

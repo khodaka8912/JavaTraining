@@ -1,4 +1,4 @@
-package ch01.ex01_03;
+package ch01.ex01_13;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -13,7 +13,7 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FibonacciTest {
+public class ImprovedFibonacciTest {
 
 	private BufferedReader reader;
 
@@ -23,26 +23,23 @@ public class FibonacciTest {
 		reader = new BufferedReader(new InputStreamReader(pin));
 		System.setOut(new PrintStream(new PipedOutputStream(pin)));
 	}
-	
+
 	@Test
-	public void testFibonacci() {
-		assertThat(new Fibonacci(), is(notNullValue()));
+	public void testImprovedFibonacci() {
+		assertThat(new ImprovedFibonacci(), is(notNullValue()));
 	}
 
 	@Test
 	public void testMain() throws IOException {
-		Fibonacci.main(null);
-		assertThat(reader.readLine(), is("Fibonacci"));
-		int lo = Integer.parseInt(reader.readLine());
-		assertThat(lo, is(1));
-		int hi = Integer.parseInt(reader.readLine());
-		assertThat(hi, is(1));
-		int next;
-		while (lo + hi < 50) {
-			next = Integer.parseInt(reader.readLine());
-			assertThat(next, is(lo + hi));
-			lo = hi;
-			hi = next;
+		ImprovedFibonacci.main(null);
+		int lo = 1;
+		int hi = 1;
+		assertThat(reader.readLine(), is("1: " + lo));
+		for (int i = 2; i <= ImprovedFibonacci.MAX_INDEX; i++) {
+			String mark = hi % 2 == 0 ? " *" : "";
+			assertThat(reader.readLine(), is(i + ": " + hi + mark));
+			hi = hi + lo;
+			lo = hi - lo;
 		}
 	}
 

@@ -13,7 +13,7 @@ public class ImprovedFibonacci {
 		int lo = 1;
 		int hi = 1;
 		
-		System.out.printf(FORMAT, 0, lo, "");
+		System.out.printf(FORMAT, 1, lo, "");
 		for (int i = 1; i < MAX_INDEX; i++) {
 			String mark = hi % 2 == 0 ? " *" : "";
 			System.out.printf(FORMAT, i + 1, hi, mark);

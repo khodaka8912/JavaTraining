@@ -1,7 +1,7 @@
 package ch01.ex01_01;
 
 /**
- * Hello world
+ * Show "Hello, world"
  * @author hodaka
  *
  */

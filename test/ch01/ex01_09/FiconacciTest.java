@@ -1,6 +1,8 @@
 package ch01.ex01_09;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +13,6 @@ import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import ch01.ex01_03.Fibonacci;
 
 public class FiconacciTest {
 
@@ -26,17 +26,22 @@ public class FiconacciTest {
 	}
 
 	@Test
+	public void testFibonacci() {
+		assertThat(new Fibonacci(), is(notNullValue()));
+	}
+
+	@Test
 	public void testMain() throws IOException {
 		Fibonacci.main(null);
-		assertEquals(reader.readLine(), "Fibonacci");
+		assertThat(reader.readLine(), is("Fibonacci"));
 		int lo = Integer.parseInt(reader.readLine());
-		assertEquals(1, lo);
+		assertThat(lo, is(1));
 		int hi = Integer.parseInt(reader.readLine());
-		assertEquals(1, hi);
+		assertThat(hi, is(1));
 		int next;
-		while (lo + hi > 50) {
+		for (int i = 2; i < Fibonacci.MAX_LENGTH; i++) {
 			next = Integer.parseInt(reader.readLine());
-			assertEquals(lo + hi, next);
+			assertThat(next, is(lo + hi));
 			lo = hi;
 			hi = next;
 		}
