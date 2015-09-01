@@ -9,18 +9,29 @@ public class Walkman {
 	private Object earphone;
 	private Object tape;
 
+	private boolean isPlaying;
+
 	public Walkman() {
 		serial = nextSerial++;
 	}
 
-	public void play() {
-		if (earphone != null && tape != null) {
-			// PlayMusic
+	/**
+	 * テープがあれば再生する
+	 * 
+	 * @return true 再生開始 false 再生しない
+	 */
+	public boolean play() {
+		if (tape != null) {
+			isPlaying = true;
+			if (earphone != null) {
+				// play music with earphone
+			}
 		}
+		return isPlaying;
 	}
 
 	public void stop() {
-
+		isPlaying = false;
 	}
 
 	public int getSerial() {
@@ -41,6 +52,10 @@ public class Walkman {
 
 	public void setEarphone(Object earphone) {
 		this.earphone = earphone;
+	}
+
+	public boolean isPlaying() {
+		return isPlaying;
 	}
 
 }

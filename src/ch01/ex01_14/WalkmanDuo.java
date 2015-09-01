@@ -5,11 +5,16 @@ public class WalkmanDuo extends Walkman {
 	private Object secondEarphone;
 
 	@Override
-	public void play() {
-		super.play();
-		if (secondEarphone != null) {
-			// play music with second earphone
+	public boolean play() {
+		if (super.play()) {
+			if (secondEarphone != null) {
+				// play music with second earphone
+			}
+			return true;
+		} else {
+			return false;
 		}
+
 	}
 
 	public Object getSecondEarphone() {
