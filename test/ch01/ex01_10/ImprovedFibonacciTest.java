@@ -42,5 +42,4 @@ public class ImprovedFibonacciTest {
 			lo = hi - lo;
 		}
 	}
-
 }
