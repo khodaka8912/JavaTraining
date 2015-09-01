@@ -33,7 +33,7 @@ public class Vehicle {
 	public Vehicle() {
 		idNum = nextID++;
 	}
-	
+
 	public Vehicle(String owner) {
 		this();
 		this.owner = owner;
@@ -59,7 +59,7 @@ public class Vehicle {
 	}
 
 	public void setDirection(double direction) {
-		if (direction > DIR_MAX || direction < DIR_MIN) {
+		if (direction >= DIR_MAX || direction < DIR_MIN) {
 			throw new IllegalArgumentException("direction out of range(-π to π)");
 		}
 		this.direction = direction;
@@ -84,16 +84,16 @@ public class Vehicle {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("id = ").append(idNum).append("\n")
-		.append("owner = ").append(owner).append("\n")
-		.append("speed = ").append(speed).append("[km/h]")
-		.append("\n").append("direction = ").append(direction);
+		sb.append("id = ").append(idNum).append("\n").append("owner = ").append(owner).append("\n").append("speed = ")
+				.append(speed).append("\n").append("direction = ").append(direction);
 		return sb.toString();
 	}
 
 	/**
 	 * 指定した角度だけ旋回する
-	 * @param angle 旋回角度[rad]
+	 * 
+	 * @param angle
+	 *            旋回角度[rad]
 	 */
 	public void turn(double angle) {
 		direction = (direction + angle) % DIR_MAX;
@@ -104,15 +104,17 @@ public class Vehicle {
 
 	/**
 	 * 右折または左折する
-	 * @param turnDirection Vehicle.TURN_LEFTまたはVehicle.TURN_RIGHT
+	 * 
+	 * @param turnDirection
+	 *            Vehicle.TURN_LEFTまたはVehicle.TURN_RIGHT
 	 */
 	public void turn(int turnDirection) {
-		switch(turnDirection) {
+		switch (turnDirection) {
 		case TURN_LEFT:
-			turn(Math.PI);
+			turn(Math.PI * 0.5);
 			break;
 		case TURN_RIGHT:
-			turn(-Math.PI);
+			turn(-Math.PI * 0.5);
 			break;
 		default:
 			throw new IllegalArgumentException("direction must be TURN_LEFT or TURN_RIGHT");

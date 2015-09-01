@@ -1,7 +1,13 @@
 package ch02.ex02_05;
 
+/**
+ * 乗り物クラス
+ * 
+ * @author hwatanabe
+ *
+ */
 public class Vehicle {
-	
+
 	public static void main(String[] args) {
 		Vehicle vehicle1 = new Vehicle();
 		Vehicle vehicle2 = new Vehicle();
@@ -11,19 +17,18 @@ public class Vehicle {
 		Vehicle vehicle3 = new Vehicle();
 		vehicle3.setOwner("owner2");
 		vehicle3.setSpeed(50);
-		vehicle3.setDirection(-2.0);
-		Vehicle[] vehicles = {vehicle1, vehicle2, vehicle3};
-		
+		vehicle3.setDirection(5.0);
+		Vehicle[] vehicles = { vehicle1, vehicle2, vehicle3 };
+
 		for (Vehicle v : vehicles) {
 			System.out.println("id = " + v.getID());
 			System.out.println("owner = " + v.getOwner());
-			System.out.println("speed = " + v.getSpeed() + "[km/h]");
+			System.out.println("speed = " + v.getSpeed());
 			System.out.println("direction = " + v.getDirection());
 			System.out.println("-----");
 		}
-		
 	}
-	
+
 	/** 現在のスピード[km/h] */
 	private int speed = 0;
 	/** 現在の方向（角度）[rad] */
@@ -42,11 +47,6 @@ public class Vehicle {
 
 	public Vehicle() {
 		idNum = nextID++;
-	}
-	
-	public Vehicle(String owner) {
-		this();
-		this.owner = owner;
 	}
 
 	public int getSpeed() {

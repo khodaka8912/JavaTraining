@@ -1,4 +1,4 @@
-package ch02.ex02_05;
+package ch02.ex02_13;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -97,5 +97,18 @@ public class VehicleTest {
 	public void testOwner() {
 		vehicle.setOwner("owner01");
 		assertThat(vehicle.getOwner(), is("owner01"));
+	}
+
+	@Test
+	public void testGetMaxID() {
+		Vehicle latest = new Vehicle();
+		assertThat(Vehicle.getMaxID(), is(latest.getID()));
+	}
+
+	@Test
+	public void testToString() {
+		String expected = "id = " + vehicle.getID() + "\n" + "owner = " + vehicle.getOwner() + "\n" + "speed = "
+				+ vehicle.getSpeed() + "\n" + "direction = " + vehicle.getDirection();
+		assertThat(vehicle.toString(), is(expected));
 	}
 }

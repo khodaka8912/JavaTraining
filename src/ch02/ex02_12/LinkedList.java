@@ -1,4 +1,6 @@
-package ch02.ex02_11;
+package ch02.ex02_12;
+
+import java.util.Objects;
 
 public class LinkedList {
 
@@ -46,5 +48,25 @@ public class LinkedList {
 			list = list.getNext();
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Objectの可変長引数（配列）をLinkedListに変換する
+	 * 
+	 * @param objects
+	 *            変換するオブジェクト列
+	 * @return 変換されたLinkedList
+	 */
+	public static LinkedList asLinkedList(Object... objects) {
+		Objects.requireNonNull(objects);
+		LinkedList list = null;
+		LinkedList before = null;
+		for (Object obj : objects) {
+			before = new LinkedList(obj, before);
+			if (list == null) {
+				list = before;
+			}
+		}
+		return list;
 	}
 }

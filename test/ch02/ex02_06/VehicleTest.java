@@ -1,10 +1,14 @@
-package ch02.ex02_04;
+package ch02.ex02_06;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,14 +17,37 @@ public class VehicleTest {
 
 	private Vehicle vehicle;
 
+	private BufferedReader reader;
+
 	@Before
 	public void setUp() throws Exception {
+		PipedInputStream pin = new PipedInputStream();
+		reader = new BufferedReader(new InputStreamReader(pin));
+		System.setOut(new PrintStream(new PipedOutputStream(pin)));
 		vehicle = new Vehicle();
 	}
 
 	@Test
 	public void testVehicle() {
 		assertThat(new Vehicle(), is(notNullValue()));
+	}
+
+	@Test
+	public void testMain() throws IOException {
+		Vehicle.main(null);
+		long maxID = new Vehicle().getID();
+		long[] ids = { maxID - 3, maxID - 2, maxID - 1 };
+		String[] owners = { "null", "owner1", "owner2" };
+		int[] speeds = { 0, 100, 50 };
+		double[] directions = { 0.0, 1.0, 5.0 };
+
+		for (int i = 0; i < 3; i++) {
+			assertThat(reader.readLine(), is("id = " + ids[i]));
+			assertThat(reader.readLine(), is("owner = " + owners[i]));
+			assertThat(reader.readLine(), is("speed = " + speeds[i]));
+			assertThat(reader.readLine(), is("direction = " + directions[i]));
+			assertThat(reader.readLine(), is("-----"));
+		}
 	}
 
 	@Test
@@ -70,11 +97,5 @@ public class VehicleTest {
 	public void testOwner() {
 		vehicle.setOwner("owner01");
 		assertThat(vehicle.getOwner(), is("owner01"));
-	}
-
-	@Test
-	public void testFinalID() throws NoSuchFieldException, SecurityException, ClassNotFoundException {
-		Field id = Class.forName("ch02.ex02_04.Vehicle").getDeclaredField("idNum");
-		assertThat(Modifier.isFinal(id.getModifiers()), is(true));
 	}
 }

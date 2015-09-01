@@ -1,7 +1,7 @@
 package ch02.ex02_09;
 
 public class Vehicle {
-	
+
 	public static void main(String[] args) {
 		Vehicle vehicle1 = new Vehicle();
 		Vehicle vehicle2 = new Vehicle();
@@ -11,27 +11,27 @@ public class Vehicle {
 		Vehicle vehicle3 = new Vehicle();
 		vehicle3.setOwner("owner2");
 		vehicle3.setSpeed(50);
-		vehicle3.setDirection(-2.0);
-		Vehicle[] vehicles = {vehicle1, vehicle2, vehicle3};
-		
+		vehicle3.setDirection(5.0);
+		Vehicle[] vehicles = { vehicle1, vehicle2, vehicle3 };
+
 		for (Vehicle v : vehicles) {
 			System.out.println("id = " + v.getID());
 			System.out.println("owner = " + v.getOwner());
-			System.out.println("speed = " + v.getSpeed() + "[km/h]");
+			System.out.println("speed = " + v.getSpeed());
 			System.out.println("direction = " + v.getDirection());
 			System.out.println("-----");
 		}
-		
+
 	}
-	
+
 	/** 現在のスピード[km/h] */
 	private int speed = 0;
 	/** 現在の方向（角度）[rad] */
 	private double direction = 0.0;
 	/** 角度の最大値 */
-	public static final double DIR_MAX = Math.PI;
+	public static final double DIR_MAX = Math.PI * 2;
 	/** 角度の最小値 */
-	public static final double DIR_MIN = -Math.PI;
+	public static final double DIR_MIN = 0.0;
 	/** 次の識別番号 */
 	private static long nextID = 0;
 	/** ID番号 */
@@ -42,6 +42,11 @@ public class Vehicle {
 
 	public Vehicle() {
 		idNum = nextID++;
+	}
+
+	public Vehicle(String owner) {
+		this();
+		this.owner = owner;
 	}
 
 	public int getSpeed() {
@@ -60,8 +65,8 @@ public class Vehicle {
 	}
 
 	public void setDirection(double direction) {
-		if (direction > DIR_MAX || direction < DIR_MIN) {
-			throw new IllegalArgumentException("direction out of range(-π to π)");
+		if (direction >= DIR_MAX || direction < DIR_MIN) {
+			throw new IllegalArgumentException("direction out of range(0 to 2π)");
 		}
 		this.direction = direction;
 	}
@@ -77,7 +82,7 @@ public class Vehicle {
 	public long getID() {
 		return idNum;
 	}
-	
+
 	public static long getMaxID() {
 		return nextID - 1;
 	}

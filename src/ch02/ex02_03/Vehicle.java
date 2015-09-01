@@ -1,5 +1,11 @@
 package ch02.ex02_03;
 
+/**
+ * 乗り物クラス
+ * 
+ * @author hwatanabe
+ *
+ */
 public class Vehicle {
 	/** 現在のスピード */
 	private int speed = 0;

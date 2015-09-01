@@ -1,7 +1,13 @@
 package ch02.ex02_01;
 
+/**
+ * 乗り物クラス
+ * 
+ * @author hwatanabe
+ *
+ */
 public class Vehicle {
-	/** 現在のスピード */
+	/** 現在のスピード [km/h] */
 	private int speed = 0;
 	/** 現在の方向（角度）[rad] */
 	private double direction = 0.0;
@@ -11,8 +17,8 @@ public class Vehicle {
 	private static final double DIR_MIN = 0.0;
 	/** 所有者の名前 */
 	private String owner;
-	
-	public Vehicle() {		
+
+	public Vehicle() {
 	}
 
 	public int getSpeed() {
@@ -20,6 +26,9 @@ public class Vehicle {
 	}
 
 	public void setSpeed(int speed) {
+		if (speed < 0) {
+			throw new IllegalArgumentException("speed must not be negative");
+		}
 		this.speed = speed;
 	}
 
@@ -29,8 +38,11 @@ public class Vehicle {
 
 	/**
 	 * set direction
-	 * @param direction 設定する方向
-	 * @throws IllegalArgumentException directionが0未満または2π以上
+	 * 
+	 * @param direction
+	 *            設定する方向
+	 * @throws IllegalArgumentException
+	 *             directionが0未満または2π以上
 	 */
 	public void setDirection(double direction) {
 		if (direction >= DIR_MAX || direction < DIR_MIN) {
