@@ -13,8 +13,6 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import ch01.ex01_03.Fibonacci;
-
 public class FibonacciTest {
 
 	private BufferedReader reader;
@@ -24,6 +22,11 @@ public class FibonacciTest {
 		PipedInputStream pin = new PipedInputStream();
 		reader = new BufferedReader(new InputStreamReader(pin));
 		System.setOut(new PrintStream(new PipedOutputStream(pin)));
+	}
+	
+	@Test
+	public void testFibonacci() {
+		assertThat(new Fibonacci(), is(notNullValue()));
 	}
 
 	@Test
@@ -35,7 +38,7 @@ public class FibonacciTest {
 		int hi = Integer.parseInt(reader.readLine());
 		assertThat(hi, is(1));
 		int next;
-		while (lo + hi > 50) {
+		while (lo + hi < 50) {
 			next = Integer.parseInt(reader.readLine());
 			assertThat(next, is(lo + hi));
 			lo = hi;

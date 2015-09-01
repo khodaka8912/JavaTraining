@@ -6,6 +6,7 @@ public class Fibonacci {
 
 	/** 値が50未のフィボナッチ数列を表示する */
 	public static void main(String[] args) {
+		System.out.println("Fibonacci");
 		int lo = 1;
 		int hi = 1;
 		int[] fiboArray = new int[MAX_LENGTH];

@@ -1,4 +1,4 @@
-package ch02.ex02_03;
+package ch02.ex02_04;
 
 public class Vehicle {
 	/** 現在のスピード */
@@ -11,7 +11,9 @@ public class Vehicle {
 	public static final double DIR_MIN = 0.0;
 	/** 次の識別番号 */
 	private static long nextID = 0;
-	/** ID番号 */
+	/** ID番号
+	 * 生成後変更されるべきではないためfinalにすべき
+	 */
 	private final long idNum;
 
 	/** 所有者の名前 */
