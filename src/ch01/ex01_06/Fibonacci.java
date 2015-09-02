@@ -1,5 +1,10 @@
 package ch01.ex01_06;
 
+/**
+ * フィボナッチ数列の表示
+ * @author hwatanabe
+ *
+ */
 public class Fibonacci {
 
 	static final String TITLE = "Fibonacci";

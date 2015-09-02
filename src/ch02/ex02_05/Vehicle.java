@@ -8,6 +8,7 @@ package ch02.ex02_05;
  */
 public class Vehicle {
 
+	/** 複数のVehicleを作成・表示 */
 	public static void main(String[] args) {
 		Vehicle vehicle1 = new Vehicle();
 		Vehicle vehicle2 = new Vehicle();

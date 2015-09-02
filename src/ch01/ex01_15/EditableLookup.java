@@ -1,5 +1,10 @@
 package ch01.ex01_15;
 
+/**
+ * 編集可能な検索テーブル
+ * @author hwatanabe
+ *
+ */
 public interface EditableLookup extends Lookup {
 	
 	/**

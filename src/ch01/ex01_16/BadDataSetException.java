@@ -2,6 +2,11 @@ package ch01.ex01_16;
 
 import java.io.IOException;
 
+/**
+ * データセット読取例外
+ * @author hwatanabe
+ *
+ */
 public class BadDataSetException extends Exception {
 
 	private final String setName;

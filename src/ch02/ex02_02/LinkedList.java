@@ -1,5 +1,10 @@
 package ch02.ex02_02;
 
+/**
+ * リンクリスト
+ * @author hwatanabe
+ *
+ */
 public class LinkedList {
 
 	private final Object element;

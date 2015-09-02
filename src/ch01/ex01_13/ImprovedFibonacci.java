@@ -1,8 +1,14 @@
 package ch01.ex01_13;
 
+/**
+ * 改良版フィボナッチ数列の表示
+ * @author hwatanabe
+ *
+ */
 public class ImprovedFibonacci {
 	
 	static final int MAX_INDEX = 9;
+	/** 表示用フォーマット */
 	static final String FORMAT = "%d: %d%s\n";
 	
 	/**

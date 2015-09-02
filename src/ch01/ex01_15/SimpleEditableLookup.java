@@ -2,6 +2,11 @@ package ch01.ex01_15;
 
 import java.util.Objects;
 
+/**
+ * 配列による編集可能検索テーブルの実装
+ * @author hwatanabe
+ *
+ */
 public class SimpleEditableLookup implements EditableLookup {
 
 	private String[] names;
@@ -13,6 +18,10 @@ public class SimpleEditableLookup implements EditableLookup {
 		values = new Object[100];
 	}
 
+	/**
+	 * コンストラクタ
+	 * @param initialSize 配列の容量
+	 */
 	public SimpleEditableLookup(int initialSize) {
 		if (initialSize < 0) {
 			throw new IllegalArgumentException("size must not be negative");

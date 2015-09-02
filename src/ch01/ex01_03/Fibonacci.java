@@ -1,7 +1,12 @@
 package ch01.ex01_03;
 
+/**
+ * フィボナッチ数列の表示
+ * @author hwatanabe
+ *
+ */
 public class Fibonacci {
-	/** 値が50未のフィボナッチ数列を表示する */
+	/** 値が50未満のフィボナッチ数列を表示する */
 	public static void main(String[] args) {
 		System.out.println("Fibonacci"); // タイトル
 		int lo = 1;

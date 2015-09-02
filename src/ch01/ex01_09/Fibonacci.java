@@ -1,10 +1,15 @@
 package ch01.ex01_09;
 
+/**
+ * フィボナッチ数列の表示
+ * @author hwatanabe
+ *
+ */
 public class Fibonacci {
 
 	static final int MAX_LENGTH = 9;
 
-	/** 値が50未のフィボナッチ数列を表示する */
+	/** MAX_LENGTHまでのフィボナッチ数列を表示する */
 	public static void main(String[] args) {
 		System.out.println("Fibonacci");
 		int lo = 1;

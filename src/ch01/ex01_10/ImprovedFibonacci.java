@@ -1,5 +1,10 @@
 package ch01.ex01_10;
 
+/**
+ * 改良版フィボナッチ数列の表示
+ * @author hwatanabe
+ *
+ */
 public class ImprovedFibonacci {
 	
 	static final int MAX_INDEX = 9;
@@ -26,6 +31,11 @@ public class ImprovedFibonacci {
 		}
 	}
 	
+	/**
+	 * 数字と偶数かどうかを保持するクラス
+	 * @author hwatanabe
+	 *
+	 */
 	private static class EvenOddNumber {
 		final int value;
 		final boolean isEven;

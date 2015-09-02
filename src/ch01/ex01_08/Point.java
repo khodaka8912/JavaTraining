@@ -1,5 +1,10 @@
 package ch01.ex01_08;
 
+/**
+ * 座標クラス
+ * @author hwatanabe
+ *
+ */
 public class Point {
 	public double x, y;
 	

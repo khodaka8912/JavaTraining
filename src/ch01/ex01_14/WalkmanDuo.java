@@ -1,5 +1,10 @@
 package ch01.ex01_14;
 
+/**
+ * 2端子モデル
+ * @author hwatanabe
+ *
+ */
 public class WalkmanDuo extends Walkman {
 
 	private Object secondEarphone;

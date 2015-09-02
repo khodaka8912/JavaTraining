@@ -1,8 +1,8 @@
 package ch01.ex01_01;
 
 /**
- * Show "Hello, world"
- * @author hodaka
+ * "Hello, world" を表示
+ * @author hwatanabe
  *
  */
 public class HelloWorld {

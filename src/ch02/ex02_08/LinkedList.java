@@ -11,7 +11,7 @@ public class LinkedList {
 	}
 
 	/**
-	 * LinkedListを生成し、前の要素に連結する
+	 * 前の要素に連結したLinkedListを生成
 	 * 
 	 * @param element
 	 *            格納するオブジェクト

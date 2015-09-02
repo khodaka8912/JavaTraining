@@ -2,6 +2,11 @@ package ch02.ex02_14;
 
 import java.util.Objects;
 
+/**
+ * リンクリスト
+ * @author hwatanabe
+ *
+ */
 public class LinkedList {
 	/** elementは変更させない */
 	private final Object element;
@@ -12,6 +17,14 @@ public class LinkedList {
 		this.element = element;
 	}
 
+	/**
+	 * 前の要素に連結したLinkedListを生成
+	 * 
+	 * @param element
+	 *            格納するオブジェクト
+	 * @param before
+	 *            前の要素
+	 */
 	public LinkedList(Object element, LinkedList before) {
 		this(element);
 		if (before != null) {

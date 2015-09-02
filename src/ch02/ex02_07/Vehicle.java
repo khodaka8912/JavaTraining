@@ -1,7 +1,14 @@
 package ch02.ex02_07;
 
+/**
+ * 乗り物クラス
+ * 
+ * @author hwatanabe
+ *
+ */
 public class Vehicle {
 
+	/** 複数のVehicleを作成・表示 */
 	public static void main(String[] args) {
 		Vehicle vehicle1 = new Vehicle();
 		Vehicle vehicle2 = new Vehicle("owner1");

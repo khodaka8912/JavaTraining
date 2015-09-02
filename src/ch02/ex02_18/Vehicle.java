@@ -1,7 +1,18 @@
 package ch02.ex02_18;
 
+/**
+ * 乗り物クラス
+ * 
+ * @author hwatanabe
+ *
+ */
 public class Vehicle {
 
+	/**
+	 * 指定されたオーナー名でVehicleを作成・表示する
+	 * @param args args[0]にオーナー名
+	 * @throws IllegalArgumentException args.lengthが1以外
+	 */
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			throw new IllegalArgumentException("length of args must be 2");

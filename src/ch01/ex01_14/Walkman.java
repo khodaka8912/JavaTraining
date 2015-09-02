@@ -1,5 +1,10 @@
 package ch01.ex01_14;
 
+/**
+ * ウォークマン
+ * @author hwatanabe
+ *
+ */
 public class Walkman {
 
 	private static int nextSerial = 0;
