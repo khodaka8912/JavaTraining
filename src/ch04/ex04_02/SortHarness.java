@@ -1,11 +1,22 @@
-package ch03.ex03_11;
+package ch04.ex04_02;
 
-abstract class SortDouble {
-	private double[] values;
+import java.util.Comparator;
+
+/**
+ * オブジェクトのソートを測定する
+ * 
+ * @author hwatanabe
+ *
+ */
+abstract class SortHarness {
+	private Object[] values;
 	private final SortMetrics curMetrics = new SortMetrics();
+	/** オブジェクトの順序を比較するComparator */
+	private Comparator<Object> comparator;
 
-	public final SortMetrics sort(double[] data) {
+	public final SortMetrics sort(Object[] data, Comparator<Object> comparator) {
 		values = data;
+		this.comparator = comparator;
 		curMetrics.init();
 		doSort();
 		return getMetrics();
@@ -19,24 +30,19 @@ abstract class SortDouble {
 		return values.length;
 	}
 	
-	protected final double probe(int i) {
+	protected final Object probe(int i) {
 		curMetrics.probeCnt++;
 		return values[i];
 	}
 	
 	protected final int compare(int i, int j) {
 		curMetrics.compareCnt++;
-		double d1 = values[i];
-		double d2 = values[j];
-		if (d1 == d2)
-			return 0;
-		else
-			return (d1 < d2 ? -1 : 1);
+		return comparator.compare(values[i], values[j]);
 	}
 	
 	protected final void swap(int i, int j) {
 		curMetrics.swapCnt++ ;
-		double tmp = values [i];
+		Object tmp = values [i];
 		values [i] = values [j] ;
 		values[j] = tmp;
 	}

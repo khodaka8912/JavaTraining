@@ -1,11 +1,11 @@
-package ch03.ex03_06;
+package ch04.ex04_01;
 
 /**
  * 電池による動力源
- * @author hodaka
+ * @author hwatanabe
  *
  */
-class Battery extends EnergySource {
+class Battery implements EnergySource {
 	
 	private int boltage;
 	
