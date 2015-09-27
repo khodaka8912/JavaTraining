@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_04;
 
 /**
  * 乗り物クラス
@@ -71,11 +71,13 @@ class Vehicle {
 		this.owner = owner;
 	}
 
-	public long getID() {
+	/** IDに関してはoverrideさせない */
+	public final long getID() {
 		return idNum;
 	}
 
-	public static long getMaxID() {
+	/** IDに関してはoverrideさせない */
+	public static final long getMaxID() {
 		return nextID - 1;
 	}
 

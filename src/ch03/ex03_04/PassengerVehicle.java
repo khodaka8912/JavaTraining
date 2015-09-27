@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_04;
 
 class PassengerVehicle extends Vehicle {
 	/** 座席数 */

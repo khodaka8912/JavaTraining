@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_08;
 
 class PassengerVehicle extends Vehicle {
 	/** 座席数 */
@@ -26,5 +26,18 @@ class PassengerVehicle extends Vehicle {
 
 	public int getPassengerNum() {
 		return passengerNum;
+	}
+	
+	/**
+	 * コピーコンストラクタ
+	 * @param org コピー元
+	 */
+	public PassengerVehicle(PassengerVehicle org) {
+		this(org.getOwner(), org.getSeatNum());
+	}
+	
+	@Override
+	public Object clone() {
+		return new PassengerVehicle(this);
 	}
 }

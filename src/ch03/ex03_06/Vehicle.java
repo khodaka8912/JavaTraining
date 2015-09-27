@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_06;
 
 /**
  * 乗り物クラス
@@ -27,13 +27,16 @@ class Vehicle {
 
 	/** 所有者の名前 */
 	private String owner;
+	/***/
+	private EnergySource energySource;
 
-	public Vehicle() {
+	public Vehicle(EnergySource energySource) {
 		idNum = nextID++;
+		this.energySource = energySource;
 	}
 
-	public Vehicle(String owner) {
-		this();
+	public Vehicle(String owner, EnergySource energySource) {
+		this(energySource);
 		this.owner = owner;
 	}
 
@@ -71,11 +74,13 @@ class Vehicle {
 		this.owner = owner;
 	}
 
-	public long getID() {
+	/** IDに関してはoverrideさせない */
+	public final long getID() {
 		return idNum;
 	}
 
-	public static long getMaxID() {
+	/** IDに関してはoverrideさせない */
+	public static final long getMaxID() {
 		return nextID - 1;
 	}
 
@@ -117,5 +122,17 @@ class Vehicle {
 		default:
 			throw new IllegalArgumentException("direction must be TURN_LEFT or TURN_RIGHT");
 		}
+	}
+	
+	/**
+	 * 動力源がからでなければ稼働開始する
+	 * @return true 稼働開始 false 稼働不可
+	 */
+	public boolean start() {
+		if (energySource.empty()) {
+			return false;
+		}
+		// start Engine
+		return true;
 	}
 }

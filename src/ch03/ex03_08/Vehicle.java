@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_08;
 
 /**
  * 乗り物クラス
@@ -6,7 +6,7 @@ package ch03.ex03_01;
  * @author hwatanabe
  *
  */
-class Vehicle {
+class Vehicle implements Cloneable {
 
 	/** 現在のスピード[km/h] */
 	private int speed = 0;
@@ -71,11 +71,13 @@ class Vehicle {
 		this.owner = owner;
 	}
 
-	public long getID() {
+	/** IDに関してはoverrideさせない */
+	public final long getID() {
 		return idNum;
 	}
 
-	public static long getMaxID() {
+	/** IDに関してはoverrideさせない */
+	public static final long getMaxID() {
 		return nextID - 1;
 	}
 
@@ -117,5 +119,19 @@ class Vehicle {
 		default:
 			throw new IllegalArgumentException("direction must be TURN_LEFT or TURN_RIGHT");
 		}
+	}
+	
+	/**
+	 * コピーコンストラクタ
+	 * idの重複を避ける
+	 * @param org コピー元
+	 */
+	public Vehicle(Vehicle org) {
+		this(org.getOwner());		
+	}
+	
+	@Override
+	public Object clone() {
+		return new Vehicle(this);
 	}
 }
