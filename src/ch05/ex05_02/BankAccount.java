@@ -11,17 +11,20 @@ public class BankAccount {
 	private long balance;
 	private History history;
 
-	BankAccount() {
+	BankAccount(long number) {
 		history = new History(10);
+		this.number = number;
 	}
 
 	public class Action {
 		private String act;
 		private long amount;
+
 		Action(String act, long amount) {
 			this.act = act;
 			this.amount = amount;
 		}
+
 		public String toString() {
 			// identify our enclosing account
 			return number + ": " + act + " " + amount;
@@ -36,9 +39,9 @@ public class BankAccount {
 			actions = new Action[length];
 		}
 
-		void add(Action newAction) {			
+		void add(Action newAction) {
 			for (int i = actions.length - 1; i > 0; i--) {
-				actions[i + 1] = actions[i];
+				actions[i] = actions[i - 1];
 			}
 			actions[0] = newAction;
 		}
@@ -55,7 +58,7 @@ public class BankAccount {
 		protected History clone() {
 			History history = null;
 			try {
-				history = (History)super.clone();
+				history = (History) super.clone();
 			} catch (CloneNotSupportedException unreachable) {
 			}
 			return history;
@@ -70,9 +73,15 @@ public class BankAccount {
 		balance += amount;
 		history.add(new Action("deposit", amount));
 	}
+
 	public void withdraw(long amount) {
 		balance -= amount;
 		history.add(new Action("withdraw", amount));
 	}
+
+	public long getBalance() {
+		return balance;
+	}
 	// ...
+
 }

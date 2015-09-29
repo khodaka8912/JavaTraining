@@ -1,24 +1,21 @@
-package ch03.ex03_12;
+package ch03.ex03_11;
 
-import java.util.Comparator;
-
-/**
- * オブジェクトのソートを測定する
- * 
- * @author hwatanabe
- *
- */
-abstract class SortHarness {
-	private Object[] values;
+abstract class FixedSortDouble {
+	private double[] values;
 	private final SortMetrics curMetrics = new SortMetrics();
-	/** オブジェクトの順序を比較するComparator */
-	private Comparator<Object> comparator;
+	/** ソート中フラグ */
+	private boolean sorting;
 
-	public final SortMetrics sort(Object[] data, Comparator<Object> comparator) {
+	/** ソート中の呼び出しは不正 */
+	public final synchronized SortMetrics sort(double[] data) {
+		if (sorting) {
+			throw new IllegalStateException("Already sorting");
+		}
+		sorting = true;
 		values = data;
-		this.comparator = comparator;
 		curMetrics.init();
 		doSort();
+		sorting = false;
 		return getMetrics();
 	}
 
@@ -30,19 +27,24 @@ abstract class SortHarness {
 		return values.length;
 	}
 
-	protected final Object probe(int i) {
+	protected final double probe(int i) {
 		curMetrics.probeCnt++;
 		return values[i];
 	}
 
 	protected final int compare(int i, int j) {
 		curMetrics.compareCnt++;
-		return comparator.compare(values[i], values[j]);
+		double d1 = values[i];
+		double d2 = values[j];
+		if (d1 == d2)
+			return 0;
+		else
+			return (d1 < d2 ? -1 : 1);
 	}
 
 	protected final void swap(int i, int j) {
 		curMetrics.swapCnt++;
-		Object tmp = values[i];
+		double tmp = values[i];
 		values[i] = values[j];
 		values[j] = tmp;
 	}

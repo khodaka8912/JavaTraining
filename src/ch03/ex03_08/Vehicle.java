@@ -120,18 +120,19 @@ class Vehicle implements Cloneable {
 			throw new IllegalArgumentException("direction must be TURN_LEFT or TURN_RIGHT");
 		}
 	}
-	
+
 	/**
-	 * コピーコンストラクタ
-	 * idの重複を避ける
-	 * @param org コピー元
+	 * コピーコンストラクタ idの重複を避ける
+	 * 
+	 * @param org
+	 *            コピー元
 	 */
 	public Vehicle(Vehicle org) {
-		this(org.getOwner());		
+		this(org.getOwner());
 	}
-	
+
 	@Override
-	public Object clone() {
+	public Vehicle clone() {
 		return new Vehicle(this);
 	}
 }
