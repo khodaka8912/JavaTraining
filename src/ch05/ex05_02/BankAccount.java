@@ -32,23 +32,25 @@ public class BankAccount {
 	}
 
 	public static class History implements Cloneable {
-		private Action[] actions;
+		private java.util.LinkedList<Action> actions;
 		private int pointer;
+		private final int length;
 
 		History(int length) {
-			actions = new Action[length];
+			this.length = length;
+			actions = new java.util.LinkedList<Action>();
 		}
 
 		void add(Action newAction) {
-			for (int i = actions.length - 1; i > 0; i--) {
-				actions[i] = actions[i - 1];
+			actions.addFirst(newAction);
+			if (actions.size() > length) {
+				actions.removeLast();
 			}
-			actions[0] = newAction;
 		}
 
 		public Action next() {
-			if (pointer < actions.length) {
-				return actions[pointer++];
+			if (pointer < actions.size()) {
+				return actions.get(pointer++);
 			} else {
 				return null;
 			}

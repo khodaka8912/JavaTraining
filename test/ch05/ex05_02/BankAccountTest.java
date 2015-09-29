@@ -52,16 +52,17 @@ public class BankAccountTest {
 	@Test
 	public void testHistoryNex() {
 		History history = new History(10);
+		history.add(target.new Action("depoist", 1));
+		history.add(target.new Action("depoist", 2));
+		history.add(target.new Action("depoist", 3));
+		history.add(target.new Action("depoist", 4));
+		history.add(target.new Action("depoist", 5));
+		history.add(target.new Action("depoist", 6));
+		history.add(target.new Action("depoist", 7));
+		history.add(target.new Action("depoist", 8));
+		history.add(target.new Action("depoist", 9));
 		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
-		history.add(target.new Action("depoist", 10));
+		history.add(target.new Action("depoist", 11));
 		for (int i = 0; i < 10; i++) {
 			assertThat(history.next(), is(notNullValue()));
 		}
