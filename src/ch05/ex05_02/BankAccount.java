@@ -28,7 +28,7 @@ public class BankAccount {
 		}
 	}
 
-	static class History implements Cloneable {
+	public static class History implements Cloneable {
 		private Action[] actions;
 		private int pointer;
 
@@ -43,7 +43,7 @@ public class BankAccount {
 			actions[0] = newAction;
 		}
 
-		Action next() {
+		public Action next() {
 			if (pointer < actions.length) {
 				return actions[pointer++];
 			} else {

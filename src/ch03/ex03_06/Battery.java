@@ -17,11 +17,15 @@ class Battery extends EnergySource {
 
 	@Override
 	public boolean empty() {
-		return getBoltage() > boltageThretthold;
+		return getBoltage() < boltageThretthold;
 	}
 	
 	public int getBoltage() {
 		return boltage;
+	}
+	
+	public void setBoltage(int boltage) {
+		this.boltage = boltage;
 	}
 
 }

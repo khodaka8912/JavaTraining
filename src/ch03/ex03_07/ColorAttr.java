@@ -57,9 +57,10 @@ class ColorAttr extends Attr {
 	}
 
 	static class ScreenColor {
+		private String color;
 
 		public ScreenColor(Object value) {
-
+			color = value.toString();
 		}
 	}
 }

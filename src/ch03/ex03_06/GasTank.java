@@ -15,7 +15,7 @@ class GasTank extends EnergySource {
 
 	@Override
 	public boolean empty() {
-		return getGas() > 0;
+		return getGas() == 0;
 	}
 	
 	public int getGas() {

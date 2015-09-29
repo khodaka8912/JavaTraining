@@ -1,4 +1,4 @@
-package ch03.ex03_01;
+package ch03.ex03_04;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
