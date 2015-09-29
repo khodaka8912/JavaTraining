@@ -53,7 +53,7 @@ class ColorAttr extends Attr {
 
 	@Override
 	public int hashCode() {
-		return getName().hashCode();
+		return getName().hashCode() + myColor.getColorName().hashCode();
 	}
 
 	static class ScreenColor {
@@ -62,5 +62,9 @@ class ColorAttr extends Attr {
 		public ScreenColor(Object value) {
 			color = value.toString();
 		}
-	}
+		
+		public String getColorName() {
+			return color;
+		}
+	} 
 }
