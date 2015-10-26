@@ -27,17 +27,19 @@ class PassengerVehicle extends Vehicle {
 	public int getPassengerNum() {
 		return passengerNum;
 	}
-	
+
 	/**
 	 * コピーコンストラクタ
-	 * @param org コピー元
+	 * 
+	 * @param org
+	 *            コピー元
 	 */
 	public PassengerVehicle(PassengerVehicle org) {
 		this(org.getOwner(), org.getSeatNum());
 	}
-	
+
 	@Override
-	public Object clone() {
+	public PassengerVehicle clone() {
 		return new PassengerVehicle(this);
 	}
 }

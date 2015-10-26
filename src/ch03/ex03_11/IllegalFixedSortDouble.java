@@ -6,7 +6,7 @@ package ch03.ex03_11;
  * @author hwatanabe
  *
  */
-class IllegalSortDouble extends SortDouble {
+class IllegalFixedSortDouble extends FixedSortDouble {
 
 	boolean hasSorted;
 

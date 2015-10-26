@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * リンクリスト
+ * 
  * @author hwatanabe
  *
  */
@@ -89,13 +90,19 @@ public class LinkedList implements Cloneable {
 		}
 		return i;
 	}
-	
+
 	@Override
-	public LinkedList clone() throws CloneNotSupportedException {
-		LinkedList list = (LinkedList)super.clone();
+	public LinkedList clone() {
+		LinkedList list = null;
+		try {
+			list = (LinkedList) super.clone();
+		} catch (CloneNotSupportedException e) {
+		}
 		LinkedList pointer = list;
 		while (pointer.next != null) {
-			pointer.next = new LinkedList(pointer.next.element, pointer);
+			LinkedList next = pointer.next.next;
+			pointer.next = new LinkedList(pointer.next.element);
+			pointer.next.setNext(next);
 			pointer = pointer.next;
 		}
 		return list;
