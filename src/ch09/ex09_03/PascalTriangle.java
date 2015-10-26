@@ -1,4 +1,4 @@
-package ch07.ex07_03;
+package ch09.ex09_03;
 
 /**
  * パスカルの三角形
@@ -23,11 +23,7 @@ public class PascalTriangle {
 		for (int i = 0; i < depth; i++) {
 			int[] row = new int[i + 1];
 			for (int j = 0; j < row.length; j++) {
-				if (j == 0 || j == i) {
-					row[j] = 1;
-				} else {
-					row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
-				}
+				row[j] = (j == 0 || j == i) ? 1 : triangle[i - 1][j - 1] + triangle[i - 1][j];
 			}
 			triangle[i] = row;
 		}
@@ -60,12 +56,12 @@ public class PascalTriangle {
 		}
 	}
 
-	protected int[][] getTriangle() {
+	public int[][] getTriangle() {
 		return triangle;
 	}
 
 	public static void main(String[] args) {
-		PascalTriangle pt = new PascalTriangle(12);
+		PascalTriangle pt = new PascalTriangle(20);
 		// PascalTriangle pt = new PascalTriangle(20);
 		pt.show();
 	}
