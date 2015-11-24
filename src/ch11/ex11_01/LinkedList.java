@@ -97,7 +97,9 @@ public class LinkedList<E> implements Cloneable {
 		LinkedList<E> list = null;
 		try {
 			list = (LinkedList<E>) super.clone();
-			list.next = list.next.clone();
+			if (list.next != null) {
+				list.next = list.next.clone();				
+			}
 		} catch (CloneNotSupportedException e) {
 		}
 		return list;
