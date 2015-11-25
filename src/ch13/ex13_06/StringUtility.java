@@ -18,7 +18,7 @@ public class StringUtility {
 		while(matcher.find()) {
 			StringBuffer sb = new StringBuffer().append(matcher.group());
 			for (int i = sb.length() - digit; i > 0; i -= digit) {
-				sb.insert(i, separator);
+				sb.insert(i, "\\" + separator);
 			}
 			matcher.appendReplacement(result, sb.toString());
 		}

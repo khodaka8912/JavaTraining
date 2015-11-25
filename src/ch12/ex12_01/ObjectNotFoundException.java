@@ -2,23 +2,27 @@ package ch12.ex12_01;
 
 public class ObjectNotFoundException extends Exception {
 	
-	private final String name;
+	private final Object target;
 	
-	public ObjectNotFoundException(String name) {
-		this(name, "Object named" + name + " not found.");
+	public ObjectNotFoundException(Object target) {
+		this(target, "Object \"" + target + "\" not found.");
 	}
 	
-	public ObjectNotFoundException(String name, String msg) {
-		this(name, msg, null);
+	public ObjectNotFoundException(Object target, String msg) {
+		this(target, msg, null);
 	}
 	
-	public ObjectNotFoundException(String name, Throwable t) {
-		this(name, "Object named" + name + " not found.", t);
+	public ObjectNotFoundException(Object target, Throwable t) {
+		this(target, "Object \"" + target + "\" not found.", t);
 	}
 	
-	public ObjectNotFoundException(String name, String msg, Throwable t) {
+	public ObjectNotFoundException(Object target, String msg, Throwable t) {
 		super(msg, t);
-		this.name = name;
+		this.target = target;
+	}
+	
+	public Object getTarget() {
+		return target;
 	}
 
 }

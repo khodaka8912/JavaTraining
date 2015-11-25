@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectCreator {
-	
+
 	private final File file;
 	private final List<Object> list = new ArrayList<>();
-	
+
 	public ObjectCreator(String filePath) {
 		this(new File(filePath));
 	}
-	
+
 	public ObjectCreator(File file) {
 		this.file = file;
 	}
-	
+
 	public void create() {
 		try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
 			String line;
@@ -32,21 +32,45 @@ public class ObjectCreator {
 				}
 				switch(strs[0]) {
 				case "Boolean":
-					list.add(Boolean.valueOf(strs[1]));
+					list.add(new Boolean(strs[1]));
 					break;
-				case "Charactor":
-					list.add(Character.valueOf(strs[1].charAt(0)));
+				case "Character":
+					list.add(new Character(strs[1].charAt(0)));
+					break;
+				case "Short":
+					list.add(new Short(strs[1]));
+					break;
+				case "Byte":
+					list.add(new Byte(strs[1]));
+					break;
+				case "Integer":
+					list.add(new Integer(strs[1]));
+					break;
+				case "Long":
+					list.add(new Long(strs[1]));
+					break;
+				case "Float":
+					list.add(new Float(strs[1]));
+					break;
+				case "Double":
+					list.add(new Double(strs[1]));
+					break;
+				default:
+					System.err.println("Invalid line:" + line);
 					break;
 				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} finally {
-			
+
 		}
+	}
+
+	public List<Object> getList() {
+		return list;
 	}
 
 }

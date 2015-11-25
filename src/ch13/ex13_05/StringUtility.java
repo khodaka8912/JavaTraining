@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 public class StringUtility {
 	
 	/**
-	 * 
-	 * @param src
-	 * @return
+	 * 文字列中の10進数をカンマで3桁毎に区切る
+	 * @param src 対象の文字列
+	 * @return 10進数の数字が3桁ごとにカンマで区切られた文字列
 	 */
 	public static String getCommaSeparated(String src) {
 		StringBuffer result = new StringBuffer();
