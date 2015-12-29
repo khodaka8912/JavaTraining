@@ -1,32 +1,32 @@
-package ch14.ex14_03;
+package ch14.ex14_05;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValueAdder {
-	private int value;
+	private static volatile AtomicInteger value;
 
 	public ValueAdder(int initialValue) {
-		value = initialValue;
+		value.set(initialValue);
 	}
 
 	public ValueAdder() {
 		this(0);
 	}
 
-	public synchronized void add(int delta) {
-		value += delta;
-		System.out.println(Thread.currentThread().getName() + ": value=" + value);
+	public static void add(int delta) {
+		int result = value.addAndGet(delta);
+		System.out.println(Thread.currentThread().getName() + ": value=" + result);
 	}
 
-	public synchronized int getValue() {
-		return value;
+	public static int getValue() {
+		return value.get();
 	}
 
 	public static void main(String[] args) {
-		final ValueAdder valueAdder = new ValueAdder();
-
 		Runnable runnable = new Runnable() {
 			public void run() {
 				for(;;) {
-					valueAdder.add(1);
+					ValueAdder.add(1);
 					try {
 						Thread.sleep(50);
 					} catch (InterruptedException ignore) {
