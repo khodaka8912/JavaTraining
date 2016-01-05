@@ -3,7 +3,7 @@ package ch14.ex14_07;
 public class Babble extends Thread {
 	static boolean doYield;
 	static int howOften;
-	private static String word;
+	private String word;
 	
 	Babble(String whatToSay) {
 		word = whatToSay;

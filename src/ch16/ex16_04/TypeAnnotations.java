@@ -9,7 +9,7 @@ public class TypeAnnotations {
 	public static void main(String[] args) {
 		for (String name : args) {
 			try {
-				Class cls = Class.forName(name);
+				Class<?> cls = Class.forName(name);
 				System.out.println(cls);
 				printAnnotations(cls);
 			} catch (ClassNotFoundException e) {
