@@ -8,17 +8,22 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 
+/**
+ * リソース管理を行う。
+ * 新たなリソースを使用するタイミングで、使用されていないリソースがあれば開放する。
+ * シャットダウン時には、すべてのリソースを開放する。
+ * 
+ * @author hwatanabe
+ *
+ */
 public final class ResourceManager {
 	final ReferenceQueue<Object> queue;
 	final Map<Reference<?>, Resource> refs;
-	final Thread reaper;
 	boolean shutdown = false;
 
 	public ResourceManager() {
 		queue = new ReferenceQueue<Object>();
 		refs = new HashMap<Reference<?>, Resource>();
-		reaper = new ReaperThread();
-		reaper.start();
 
 		// ... リソースの初期化 ...
 	}
@@ -40,34 +45,31 @@ public final class ResourceManager {
 			}
 		}
 	}
+	
+	/**
+	 * リソースの刈り取り
+	 */
+	private void reap() {
+		Reference<?> ref;
+		while((ref = queue.poll()) != null) {
+			Resource res = null;
+			synchronized (ResourceManager.this) {
+				res = refs.get(ref);
+				refs.remove(ref);
+			}
+			res.release();
+			ref.clear();
+		}
+	}
 
 	public synchronized Resource getResource(Object key) {
 		if (shutdown)
 			throw new IllegalStateException();
+		reap();
 		Resource res = new ResourceImpl(key);
 		Reference<?> ref = new PhantomReference<Object>(key, queue);
 		refs.put(ref, res);
 		return res;
-	}
-
-	class ReaperThread extends Thread {
-		public void run() {
-			// 割り込まれるまで実行
-			while (true) {
-				try {
-					Reference<?> ref = queue.remove();
-					Resource res = null;
-					synchronized (ResourceManager.this) {
-						res = refs.get(ref);
-						refs.remove(ref);
-					}
-					res.release();
-					ref.clear();
-				} catch (InterruptedException ex) {
-
-				}
-			}
-		}
 	}
 
 	private static class ResourceImpl implements Resource {
