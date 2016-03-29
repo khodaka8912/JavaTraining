@@ -9,27 +9,20 @@ import java.util.Arrays;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		byte[] source = "abracadabra!".getBytes();
-		System.out.println("source = " + Arrays.toString(source));
+		System.out.println("source = \"" + new String(source) + "\" " + Arrays.toString(source));
 		byte key = (byte) 0xab;
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
-		EncryptOutputStream eout = new EncryptOutputStream(bout, key);
-		try {
+		try (EncryptOutputStream eout = new EncryptOutputStream(bout, key)) {
 			eout.write(source);
-		} finally {
-			eout.close();
 		}
 		byte[] encrypted = bout.toByteArray();
-		System.out.println("encrypted = " + Arrays.toString(encrypted));
+		System.out.println("encrypted = \"" + new String(encrypted) + "\" " + Arrays.toString(encrypted));
 		ByteArrayInputStream bin = new ByteArrayInputStream(encrypted);
-		DecryptInputStream din = new DecryptInputStream(bin, key);
 		byte[] decrypted = new byte[source.length];
-		DataInputStream datain = new DataInputStream(din);
-		try {
-			datain.readFully(decrypted);
-		} finally {
-			datain.close();
+		try(DecryptInputStream din = new DecryptInputStream(bin, key)) {
+			din.read(decrypted);
 		}
-		System.out.println("decrypted = " + Arrays.toString(decrypted));
+		System.out.println("decrypted = \"" + new String(decrypted) + "\" " + Arrays.toString(decrypted));
 	}
 
 }
