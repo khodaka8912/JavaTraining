@@ -1,0 +1,15 @@
+Entry01
+testestestestestest
+%% this line is a separator
+Entry02
+Hello, world!
+Hello, world!!
+Hello, world!!!
+%%
+Entry03
+3333333333333
+%%
+Entry04
+%%
+Entry05
+this line is not a separator %%
