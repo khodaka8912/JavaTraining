@@ -107,7 +107,7 @@ public class ThreadPool {
 
 	private class WorkerThread extends Thread {
 
-		private boolean stopped;
+		private volatile boolean stopped;
 
 		@Override
 		public void run() {

@@ -2,6 +2,7 @@ package ch20.ex20_08;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class EntryParser {
 
 	private final String filePath;
-	private List<Long> entryList;
+	private List<Long> cacheList;
 
 	private static final String SEPARATOR = "%%";
 
@@ -41,6 +42,12 @@ public class EntryParser {
 					entryList.add(in.getFilePointer());
 				}
 			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Source File Not Found.");
+			return;
+		} catch (IOException e) {
+			System.out.println("IOException has occured.");
+			return;
 		}
 		File tableFile = new File(filePath + ".table");
 		tableFile.createNewFile();
@@ -58,16 +65,16 @@ public class EntryParser {
 	 */
 	public void showEntryRandom() throws IOException {
 		File tableFile = new File(filePath + ".table");
-		if (entryList == null) {
+		if (cacheList == null) {
 			if (!tableFile.exists()) {
 				createTableFile();
 			}
-			entryList = Files.readAllLines(tableFile.toPath()).stream().map(Long::parseLong)
+			cacheList = Files.readAllLines(tableFile.toPath()).stream().map(Long::parseLong)
 					.collect(Collectors.toList());
 		}
-		int i = (int) (Math.random() * entryList.size());
+		int i = (int) (Math.random() * cacheList.size());
 		try (RandomAccessFile in = new RandomAccessFile(new File(filePath), "r")) {
-			in.seek(entryList.get(i));
+			in.seek(cacheList.get(i));
 			String line;
 			while ((line = in.readLine()) != null) {
 				if (line.startsWith(SEPARATOR)) {
@@ -78,6 +85,11 @@ public class EntryParser {
 		}
 	}
 	
+	/**
+	 * test.txtのエントリーをランダムに10回」表示する
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		String filePath = "src\\ch20\\ex20_08\\test.txt";
 		EntryParser parser = new EntryParser(filePath);
