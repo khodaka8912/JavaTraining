@@ -12,11 +12,7 @@ public class WhichChars {
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 			Byte upper = (byte) (c >> 8);
-			BitSet lowerSet = used.get(upper);
-			if (lowerSet == null) {
-				lowerSet = new BitSet();
-				used.put(upper, lowerSet);
-			}
+			BitSet lowerSet = used.computeIfAbsent(upper, b -> new BitSet());
 			lowerSet.set(c & 0xff);
 		}
 	}
@@ -35,6 +31,6 @@ public class WhichChars {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new WhichChars("Hello, World!!"));
+		System.out.println(new WhichChars("Hello, World!!日本語"));
 	}
 }

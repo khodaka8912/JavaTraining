@@ -13,7 +13,7 @@ public class FileDesc {
 	 */
 	public static void showFileDescriptions(String... filePaths) {
 		Objects.requireNonNull(filePaths, "filePaths must not be null.");
-		Arrays.stream(filePaths).map(s -> Optional.ofNullable(s).map(o -> new File(o)))
+		Arrays.stream(filePaths).map(s -> Optional.ofNullable(s).<File>map(o -> new File(o)))
 				.forEach(o -> o.ifPresent(FileDesc::showFileDescription));
 	}
 
